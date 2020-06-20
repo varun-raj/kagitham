@@ -1,4 +1,4 @@
-import { Editor, Transforms, Point, Range, Node, Path } from 'slate'
+import { Editor, Transforms, Point, Range, Node } from 'slate'
 import { LISTS, SHORTCUTS } from '../Contants';
 
 

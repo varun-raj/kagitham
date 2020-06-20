@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useEffect } from 'react'
+import React, { useState, useMemo, useCallback } from 'react'
 import { createEditor, Editor, Transforms } from 'slate'
 import { Slate, Editable, withReact } from 'slate-react'
 import { withHistory } from 'slate-history'
@@ -14,9 +14,6 @@ const SKEditor = ({ onEditorChange }) => {
     () => withShortcuts(withHistory(withReact(createEditor()))), []
   )
 
-  useEffect(() => {
-    onEditorChange(value);
-  }, [])
 
   const handleOnChange = (content) => {
     onEditorChange(content);
