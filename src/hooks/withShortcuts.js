@@ -1,5 +1,5 @@
 import { Editor, Transforms, Point, Range, Node } from 'slate'
-import { LISTS, SHORTCUTS } from '../Contants';
+import { LISTS, SHORTCUTS, LIST_ITEMS } from '../Contants';
 
 
 
@@ -19,23 +19,29 @@ const withShortcuts = editor => {
       const range = { anchor, focus: start }
       const beforeText = Editor.string(editor, range)
       const type = SHORTCUTS[beforeText]
-
       
       if (type) {
         Transforms.select(editor, range)
         Transforms.delete(editor)
-        Transforms.setNodes(
-          editor,
-          { type },
-          { match: n => Editor.isBlock(editor, n) }
-        )
+        if (LIST_ITEMS.includes(type)) {
+          Transforms.setNodes(
+            editor,
+            { type: "list-item" },
+            { match: n => Editor.isBlock(editor, n) }
+          )
+        } else {
+          Transforms.setNodes(
+            editor,
+            { type },
+            { match: n => Editor.isBlock(editor, n) }
+          )
+        }
 
         if (type === 'bulleted-list-item') {
           const list = { type: 'bulleted-list', children: [] }
           Transforms.wrapNodes(editor, list, {
             match: n => {
-              console.log(n.type);
-              return n.type === 'bulleted-list-item';
+              return n.type === 'list-item';
             }
           })
         }
@@ -44,7 +50,7 @@ const withShortcuts = editor => {
           const list = { type: 'ordered-list', children: [] }
           Transforms.wrapNodes(editor, list, {
             match: n => {
-              return n.type === 'ordered-list-item';
+              return n.type === 'list-item';
             }
           })
         }
@@ -75,14 +81,14 @@ const withShortcuts = editor => {
         ) {
           Transforms.setNodes(editor, { type: 'paragraph' })
 
-          if (block.type === 'bulleted-list-item') {
+          if (block.type === 'list-item' && parent.type === "bulleted-list") {
             Transforms.unwrapNodes(editor, {
               match: n => n.type === 'bulleted-list',
               split: true,
             })
           }
           
-          if (block.type === 'ordered-list-item') {
+          if (block.type === 'list-item' && parent.type === "ordered-list") {
             Transforms.unwrapNodes(editor, {
               match: n => n.type === 'ordered-list',
               split: true,

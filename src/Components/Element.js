@@ -18,9 +18,7 @@ export default ({ attributes, children, element }) => {
       return <ol {...attributes}>{children}</ol>
     case 'bulleted-list':
       return <ul {...attributes}>{children}</ul>
-    case 'bulleted-list-item':
-      return <li {...attributes}>{children}</li>
-    case 'ordered-list-item':
+    case 'list-item':
       return <li {...attributes}>{children}</li>
     case 'block-quote':
       return <blockquote {...attributes}>{children}</blockquote>

@@ -33,7 +33,7 @@ const toggleBlock = (e, format, editor) => {
   })
 
   Transforms.setNodes(editor, {
-    type: isActive ? 'paragraph' : isList ? (format === "ordered-list" ? "ordered-list-item" : 'bulleted-list-item') : format,
+    type: isActive ? 'paragraph' : isList ? "list-item" : format,
   })
   
   if (!isActive && isList) {

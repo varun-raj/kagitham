@@ -42,10 +42,9 @@ const SKEditor = ({ onEditorChange }) => {
         match: n => Editor.isBlock(editor, n),
       })
       let [block] = match;
-      if (LIST_ITEMS.includes(block.type)) {
+      if (block.type === "list-item") {
         if (block.children[0].text === "") {
           e.preventDefault()
-
           Transforms.unwrapNodes(editor, {
             match: n => LISTS.includes(n.type),
             split: true,
@@ -55,6 +54,7 @@ const SKEditor = ({ onEditorChange }) => {
       }
     }
   }
+  
   return (
     <div className="sk-editor">
         <Slate editor={editor} value={value} onChange={handleOnChange}>

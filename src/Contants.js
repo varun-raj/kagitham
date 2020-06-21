@@ -45,11 +45,41 @@ const HOTKEYS = {
 const LISTS = ["bulleted-list", "ordered-list"];
 const LIST_ITEMS = ["bulleted-list-item", "ordered-list-item"];
 
+const ELEMENT_TAGS = {
+  A: el => ({ type: 'link', url: el.getAttribute('href') }),
+  BLOCKQUOTE: () => ({ type: 'block-quote' }),
+  H1: () => ({ type: 'heading-one' }),
+  H2: () => ({ type: 'heading-two' }),
+  H3: () => ({ type: 'heading-three' }),
+  H4: () => ({ type: 'heading-four' }),
+  H5: () => ({ type: 'heading-five' }),
+  H6: () => ({ type: 'heading-six' }),
+  IMG: el => ({ type: 'image', url: el.getAttribute('src') }),
+  LI: () => ({ type: 'list-item' }),
+  OL: () => ({ type: 'ordered-list' }),
+  P: () => ({ type: 'paragraph' }),
+  PRE: () => ({ type: 'code' }),
+  UL: () => ({ type: 'bulleted-list' }),
+}
+
+// COMPAT: `B` is omitted here because Google Docs uses `<b>` in weird ways.
+const LEAF_TAGS = {
+  CODE: () => ({ code: true }),
+  DEL: () => ({ strike: true }),
+  EM: () => ({ italics: true }),
+  I: () => ({ italics: true }),
+  S: () => ({ strike: true }),
+  STRONG: () => ({ bold: true }),
+  U: () => ({ underline: true }),
+}
+
 export {
   MARK_BUTTONS,
   BLOCK_BUTTONS,
   SHORTCUTS,
   HOTKEYS,
   LISTS,
-  LIST_ITEMS
+  LIST_ITEMS,
+  ELEMENT_TAGS,
+  LEAF_TAGS
 }
