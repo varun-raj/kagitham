@@ -35,6 +35,13 @@ const SHORTCUTS = {
   '######': 'heading-six',
 }
 
+const HOTKEYS = {
+  'mod+b': 'strong',
+  'mod+i': 'italics',
+  'mod+u': 'underline',
+  'mod+`': 'code',
+}
+
 const LISTS = ["bulleted-list", "ordered-list"];
 const LIST_ITEMS = ["bulleted-list-item", "ordered-list-item"];
 
@@ -42,6 +49,7 @@ export {
   MARK_BUTTONS,
   BLOCK_BUTTONS,
   SHORTCUTS,
+  HOTKEYS,
   LISTS,
   LIST_ITEMS
 }

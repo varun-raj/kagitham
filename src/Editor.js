@@ -6,7 +6,10 @@ import Element from './Components/Element';
 import Leaf from './Components/Leaf';
 import Toolbar from './Components/Toolbar';
 import withShortcuts from './hooks/withShortcuts';
-import { LIST_ITEMS, LISTS } from './Contants';
+import { LIST_ITEMS, LISTS, HOTKEYS } from './Contants';
+import isHotkey from 'is-hotkey'
+import { toggleMark } from './EditorActions';
+
 
 const SKEditor = ({ onEditorChange }) => {
   const [value, setValue] = useState(initialValue)
@@ -23,6 +26,17 @@ const SKEditor = ({ onEditorChange }) => {
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const onKeyDown = (e) => {
+
+    for (const hotkey in HOTKEYS) {
+      if (isHotkey(hotkey, e)) {
+        e.preventDefault()
+        const mark = HOTKEYS[hotkey]
+        toggleMark(e, mark, editor);
+        return;
+      }
+    }
+
+    
     if (e.key === "Enter") {
       const match = Editor.above(editor, {
         match: n => Editor.isBlock(editor, n),
