@@ -24,6 +24,8 @@ export default ({ attributes, children, element }) => {
       return <li {...attributes}>{children}</li>
     case 'block-quote':
       return <blockquote {...attributes}>{children}</blockquote>
+    case 'code-block':
+      return <samp {...attributes}>{children}</samp>
     default:
       return <p {...attributes}>{children}</p>
   }

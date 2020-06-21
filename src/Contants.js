@@ -15,7 +15,9 @@ const BLOCK_BUTTONS = [
   {name: "H6", format: "heading-six"},
   {name: '"', format: "block-quote"},
   {name: "*", format: "bulleted-list"},
-  {name: "1.", format: "ordered-list"}
+  {name: "1.", format: "ordered-list"},
+  {name: "Code Block", format: "code-block"}
+
 ];
 
 
