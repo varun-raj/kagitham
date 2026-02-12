@@ -13,7 +13,7 @@
     "is-hotkey": "^0.1.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "slate": "^0.58.3",
     "slate-history": "^0.58.3",
     "slate-react": "^0.58.3",
